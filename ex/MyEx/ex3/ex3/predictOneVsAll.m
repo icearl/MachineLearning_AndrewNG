@@ -8,7 +8,9 @@ function p = predictOneVsAll(all_theta, X)
 %  of values from 1..K (e.g., p = [1; 3; 1; 2] predicts classes 1, 3, 1, 2
 %  for 4 examples) 
 
+%样本数
 m = size(X, 1);
+%分类器数量（10个）
 num_labels = size(all_theta, 1);
 
 % You need to return the following variables correctly 
@@ -29,9 +31,9 @@ X = [ones(m, 1) X];
 %       are in rows, then, you can use max(A, [], 2) to obtain the max 
 %       for each row.
 %       
-
-
-
+all_predictions = all_theta * X';
+[M,I]=max(all_predictions);
+p = I(:);
 
 
 
