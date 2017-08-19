@@ -42,7 +42,11 @@ J = (-(y'*log(h_theta)) - (1-y)'*log(1-h_theta)) / m + ...
 
 grad = X'*(h_theta-y)/m + lambda/m*[0;theta_reg];
 
-
+%·½¶þ£º
+% hx=sigmoid(X*theta);
+% J=-(y'*log(hx)+(1-y)'*log(1-hx))/m+lambda/(2*m)*sum(theta(2:end,:).^2);
+% theta(1)=0;
+% grad=1/m*X'*(hx-y)+lambda/m*theta;
 
 
 
