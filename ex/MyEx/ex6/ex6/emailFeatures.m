@@ -46,8 +46,21 @@ x = zeros(n, 1);
 %
 %              x = [ 0 0 0 0 1 0 0 0 ... 0 0 0 0 1 ... 0 0 0 1 0 ..];
 %
-%
 
+%丑陋的方法
+% for i = 1 : n
+%     for j = 1 : length(word_indices)
+%         if word_indices(j) == i
+%             x(i) = 1;
+%         end
+%     end
+% end
+
+% 优雅的方法
+for i = 1:length(word_indices)
+    word_idx = word_indices(i);
+    x(word_idx) = 1;
+end
 
 
 

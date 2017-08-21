@@ -23,8 +23,23 @@ sigma = 0.3;
 %        mean(double(predictions ~= yval))
 %
 
-
-
+Cs = [0.01 0.03 0.1 0.3 1 3 10 30]; Cs_length = length(Cs);
+sigmas = [0.01 0.03 0.1 0.3 1 3 10 30]; sigmas_length = length(sigmas);
+scores = zeros(length(Cs)*length(sigmas), 3);
+for i = 1:Cs_length
+    for j = 1:sigmas_length
+        Ci = Cs(i); sigmai = sigmas(j);
+        model= svmTrain(X, y, Ci, @(x1, x2) gaussianKernel(x1, x2, sigmai));
+        predictions = svmPredict(model, Xval);
+        %这是得分，越高越好
+        scorei = mean(double(predictions == yval));
+        scores((i-1)*sigmas_length+j, :) = [Ci sigmai scorei];
+    end
+end
+[M I] = max(scores);
+highest_score_index = I(3);
+C = scores(highest_score_index, 1);
+sigma = scores(highest_score_index, 2);
 
 
 
