@@ -41,8 +41,19 @@ Theta_grad = zeros(size(Theta));
 %
 
 
+% nm * nu
+H_Theta = X * Theta';
+Error = H_Theta - Y;
+Error_logical = Error .* R;
+
+J = 1/2 * sum(Error_logical(:).^2) + ...
+    lambda/2*Theta(:)'*Theta(:) + ...
+    lambda/2*X(:)'*X(:);
 
 
+
+X_grad = Error_logical*Theta + lambda*X;
+Theta_grad = Error_logical'*X + lambda*Theta;
 
 
 

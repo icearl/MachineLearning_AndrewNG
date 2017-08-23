@@ -21,7 +21,9 @@ sigma2 = zeros(n, 1);
 %               should contain variance of the i-th feature.
 %
 
-
+% 隐式转换列为行向量？ 
+mu=mean(X);
+sigma2=var(X,1);
 
 
 
